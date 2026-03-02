@@ -12,10 +12,12 @@ import {
 } from "@nestjs/common";
 import { CategoriaTreino } from "../entities/categoria-treino.entity";
 import { CategoriaTreinoService } from "../services/categoria-treino.service";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags()
 @Controller("/categorias-treino")
 export class CategoriaTreinoController {
-  constructor(private readonly categoriaTreinoService: CategoriaTreinoService) {}
+  constructor(private readonly categoriaTreinoService: CategoriaTreinoService) { }
 
   @Get()
   @HttpCode(HttpStatus.OK)

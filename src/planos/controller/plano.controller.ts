@@ -12,6 +12,9 @@ import {
 } from '@nestjs/common';
 import { Plano } from '../entities/plano.entity';
 import { PlanoService } from '../service/plano.service';
+import { ApiTags } from '@nestjs/swagger';
+
+@ApiTags()
 @Controller('/planos')
 export class PlanoController {
   constructor(private readonly PlanoService: PlanoService) {}

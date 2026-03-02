@@ -9,18 +9,16 @@ import { PlanoModule } from "./planos/plano.module";
 
 import { CategoriaTreino } from "./categoria-treino/entities/categoria-treino.entity";
 import { CategoriaTreinoModule } from "./categoria-treino/categoria-treino.module";
+import { ConfigModule } from "@nestjs/config";
+import { ProdService } from "./data/services/prod.service";
+import { DevService } from "./data/services/dev.service";
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: "mysql",
-      host: "localhost",
-      port: 3306,
-      username: "root",
-      password: "root",
-      database: "db_fittrack",
-      entities: [Usuario, Plano, CategoriaTreino],
-      synchronize: true,
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useClass: DevService,
+      imports: [ConfigModule],
     }),
     UsuarioModule,
     PlanoModule,
